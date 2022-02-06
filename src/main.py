@@ -25,16 +25,16 @@ async def get_media_info():
 
 
 async def toggle_spotify():
-    sessions = await MediaManager.request_async()
+    sessions = await MediaManager.request_async() #grab session manager instance
 
-    all_sessions = sessions.get_sessions()
-    for current_session in all_sessions:
+    all_sessions = sessions.get_sessions() #grab sequence of current instances
+    for current_session in all_sessions: #iterate and grab desired instances
         if "chrome" in current_session.source_app_user_model_id.lower():
             chrome_info = current_session.get_playback_info()
         if "spotify" in current_session.source_app_user_model_id.lower():
-            spotify_manager = current_session
+            spotify_manager = current_session 
             spotify_info = current_session.get_playback_info()
-    if chrome_info.playback_status == 4 and spotify_info.playback_status == 4:
+    if chrome_info.playback_status == 4 and spotify_info.playback_status == 4: #status of 4 is playing, 5 is paused
         await spotify_manager.try_toggle_play_pause_async()
     elif chrome_info.playback_status == 5 and spotify_info.playback_status == 5:
         await spotify_manager.try_toggle_play_pause_async()

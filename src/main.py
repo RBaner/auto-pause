@@ -28,7 +28,7 @@ async def toggle_spotify():
     previous_state_spotify = 5
     previous_state_chrome = 5
     while True:
-        start = time.time()
+        #start = time.time()
         sessions = await MediaManager.request_async() #grab session manager instance
 
         all_sessions = sessions.get_sessions() #grab sequence of current instances
@@ -53,10 +53,10 @@ async def toggle_spotify():
                 previous_state_spotify = 5
             previous_state_chrome = 4
         previous_state_chrome = chrome_info.playback_status
-        end = time.time()
+        #end = time.time()
         # previous_state_spotify = spotify_info.playback_status
         time.sleep(1)
-        print(end-start)
+        #print(end-start)
         # print(f"chrome playback status: {chrome_info.playback_status}")
         # print(f"chrome playback status: {spotify_info.playback_status}")
         # print("+++++++++++++++++")
